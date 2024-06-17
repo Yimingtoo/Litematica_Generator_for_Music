@@ -1,0 +1,141 @@
+{
+  "header": {
+    "keySignatures": [
+      {
+        "key": "C",
+        "scale": "major",
+        "ticks": 0
+      }
+    ],
+    "meta": [],
+    "name": "æ¶å­é¼",
+    "ppq": 480,
+    "tempos": [
+      {
+        "bpm": 120,
+        "ticks": 0
+      }
+    ],
+    "timeSignatures": [
+      {
+        "ticks": 0,
+        "timeSignature": [
+          4,
+          4
+        ],
+        "measures": 0
+      }
+    ]
+  },
+  "tracks": [
+    {
+      "channel": 9,
+      "controlChanges": {
+        "7": [
+          {
+            "number": 7,
+            "ticks": 0,
+            "time": 0,
+            "value": 0.7874015748031497
+          }
+        ],
+        "10": [
+          {
+            "number": 10,
+            "ticks": 0,
+            "time": 0,
+            "value": 0.5039370078740157
+          }
+        ],
+        "91": [
+          {
+            "number": 91,
+            "ticks": 0,
+            "time": 0,
+            "value": 0
+          }
+        ],
+        "93": [
+          {
+            "number": 93,
+            "ticks": 0,
+            "time": 0,
+            "value": 0
+          }
+        ],
+        "121": [
+          {
+            "number": 121,
+            "ticks": 0,
+            "time": 0,
+            "value": 0
+          }
+        ]
+      },
+      "pitchBends": [],
+      "instrument": {
+        "family": "drums",
+        "number": 0,
+        "name": "standard kit"
+      },
+      "name": "æ¶å­é¼",
+      "notes": [
+        {
+          "duration": 0.5,
+          "durationTicks": 480,
+          "midi": 35,
+          "name": "B1",
+          "ticks": 0,
+          "time": 0,
+          "velocity": 0.6299212598425197
+        },
+        {
+          "duration": 0.5,
+          "durationTicks": 480,
+          "midi": 35,
+          "name": "B1",
+          "ticks": 480,
+          "time": 0.5,
+          "velocity": 0.6299212598425197
+        },
+        {
+          "duration": 0.5,
+          "durationTicks": 480,
+          "midi": 35,
+          "name": "B1",
+          "ticks": 960,
+          "time": 1,
+          "velocity": 0.6299212598425197
+        },
+        {
+          "duration": 0.5,
+          "durationTicks": 480,
+          "midi": 37,
+          "name": "C#2",
+          "ticks": 1920,
+          "time": 2,
+          "velocity": 0.6299212598425197
+        },
+        {
+          "duration": 0.5,
+          "durationTicks": 480,
+          "midi": 37,
+          "name": "C#2",
+          "ticks": 2400,
+          "time": 2.5,
+          "velocity": 0.6299212598425197
+        },
+        {
+          "duration": 0.5,
+          "durationTicks": 480,
+          "midi": 37,
+          "name": "C#2",
+          "ticks": 2880,
+          "time": 3,
+          "velocity": 0.6299212598425197
+        }
+      ],
+      "endOfTrackTicks": 3361
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+JFDML JFormDesigner: "8.2.1.0.348" Java: "17.0.9" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "this"
+			"iconImage": new com.jformdesigner.model.SwingIcon( 0, "/images/play.png" )
+			"title": "乐器投影生成器"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+				name: "dialogPane"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+					name: "contentPanel"
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+						"$layoutConstraints": "insets 4 0 4 0"
+						"$columnConstraints": "[5:n,fill][fill][40:n,fill][grow,fill][fill]"
+						"$rowConstraints": "[grow,fill]"
+					} ) {
+						name: "toolPanel"
+						add( new FormComponent( "javax.swing.JCheckBox" ) {
+							name: "playAllCheckBox"
+							"text": "播放全部"
+						}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+							"value": "cell 1 0"
+						} )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "foldButton"
+							"text": "展开"
+							"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+							"background": sfield com.jformdesigner.model.FormObject NULL_VALUE
+							"foreground": sfield com.jformdesigner.model.FormObject NULL_VALUE
+						}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+							"value": "cell 2 0"
+						} )
+					}, new FormLayoutConstraints( class java.lang.String ) {
+						"value": "North"
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane1"
+						"preferredSize": new java.awt.Dimension( 100, 100 )
+						"maximumSize": new java.awt.Dimension( 100, 100 )
+						"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+							"$layoutConstraints": "hidemode 3"
+							"$columnConstraints": "[grow,fill]"
+							"$rowConstraints": "[grow,fill]"
+						} ) {
+							name: "midiInfoPanel"
+							add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+								name: "tipPanel"
+								add( new FormComponent( "javax.swing.JLabel" ) {
+									name: "tipLabel"
+									"text": "点击以打开文件"
+									"font": new java.awt.Font( "Microsoft YaHei", 0, 14 )
+									"horizontalAlignment": 0
+								}, new FormLayoutConstraints( class java.lang.String ) {
+									"value": "Center"
+								} )
+							}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+								"value": "cell 0 0"
+							} )
+						} )
+					}, new FormLayoutConstraints( class java.lang.String ) {
+						"value": "Center"
+					} )
+				}, new FormLayoutConstraints( class java.lang.String ) {
+					"value": "Center"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+					name: "panel1"
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+						"$layoutConstraints": "fillx,insets panel,alignx center"
+						"$columnConstraints": "[::50,fill][::60,center][200:n,fill][:80:80,fill][::50,fill][::50,fill]"
+						"$rowSpecs": "[fill]"
+					} ) {
+						name: "buttonBar"
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "okButton"
+							"selectedIcon": sfield com.jformdesigner.model.FormObject NULL_VALUE
+							"icon": sfield com.jformdesigner.model.FormObject NULL_VALUE
+							"text": "►"
+							"toolTipText": "播放"
+						}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+							"value": "cell 1 0,width 25:25:25"
+						} )
+						add( new FormComponent( "javax.swing.JSlider" ) {
+							name: "slider1"
+							"maximum": 1000
+							"value": 0
+						}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+							"value": "cell 2 0,growx"
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "timeDisplayLabel"
+							"text": "0:00/0:00"
+						}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+							"value": "cell 3 0,alignx center,growx 0"
+						} )
+						add( new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+							name: "menuBar2"
+							add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+								name: "speedMenu"
+								"text": "倍速"
+								add( new FormComponent( "javax.swing.JMenuItem" ) {
+									name: "speedMenuItem0_5x"
+									"text": "0.5x"
+								} )
+								add( new FormComponent( "javax.swing.JMenuItem" ) {
+									name: "speedMenuItem0_75x"
+									"text": "0.75x"
+								} )
+								add( new FormComponent( "javax.swing.JMenuItem" ) {
+									name: "speedMenuItem1_0x"
+									"text": "1.0x"
+								} )
+								add( new FormComponent( "javax.swing.JMenuItem" ) {
+									name: "speedMenuItem1_25x"
+									"text": "1.25x"
+								} )
+								add( new FormComponent( "javax.swing.JMenuItem" ) {
+									name: "speedMenuItem1_5x"
+									"text": "1.5x"
+								} )
+								add( new FormComponent( "javax.swing.JMenuItem" ) {
+									name: "speedMenuItem2_0x"
+									"text": "2.0x"
+								} )
+								add( new FormComponent( "javax.swing.JTextField" ) {
+									name: "speedTextField"
+								} )
+							} )
+						}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+							"value": "cell 4 0"
+						} )
+					}, new FormLayoutConstraints( class java.lang.String ) {
+						"value": "Center"
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+						name: "statusBar"
+						"opaque": false
+						"preferredSize": new java.awt.Dimension( 10, 20 )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "statusLabel"
+							"preferredSize": sfield com.jformdesigner.model.FormObject NULL_VALUE
+						}, new FormLayoutConstraints( class java.lang.String ) {
+							"value": "East"
+						} )
+					}, new FormLayoutConstraints( class java.lang.String ) {
+						"value": "South"
+					} )
+				}, new FormLayoutConstraints( class java.lang.String ) {
+					"value": "South"
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
+			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+				name: "menuBar1"
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu1"
+					"text": "文件"
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem1"
+						"text": "打开..."
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "exportMenuItem"
+						"text": "导出..."
+					} )
+				} )
+			}
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 680, 405 )
+		} )
+	}
+}

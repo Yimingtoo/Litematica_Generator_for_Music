@@ -1,0 +1,215 @@
+
+{
+  "header": {
+    "keySignatures": [
+      {
+        "key": "C",
+        "scale": "major",
+        "ticks": 0
+      },
+      {
+        "key": "C",
+        "scale": "major",
+        "ticks": 0
+      }
+    ],
+    "meta": [],
+    "name": "é¢ç´",
+    "ppq": 480,
+    "tempos": [
+      {
+        "bpm": 300,
+        "ticks": 0
+      }
+    ],
+    "timeSignatures": [
+      {
+        "ticks": 0,
+        "timeSignature": [
+          4,
+          4
+        ],
+        "measures": 0
+      }
+    ]
+  },
+  "tracks": [
+    {
+      "channel": 0,
+      "controlChanges": {
+        "6": [
+          {
+            "number": 6,
+            "ticks": 0,
+            "time": 0,
+            "value": 0.09448818897637795
+          }
+        ],
+        "7": [
+          {
+            "number": 7,
+            "ticks": 0,
+            "time": 0,
+            "value": 0.7874015748031497
+          }
+        ],
+        "10": [
+          {
+            "number": 10,
+            "ticks": 0,
+            "time": 0,
+            "value": 0.5039370078740157
+          }
+        ],
+        "91": [
+          {
+            "number": 91,
+            "ticks": 0,
+            "time": 0,
+            "value": 0
+          }
+        ],
+        "93": [
+          {
+            "number": 93,
+            "ticks": 0,
+            "time": 0,
+            "value": 0
+          }
+        ],
+        "100": [
+          {
+            "number": 100,
+            "ticks": 0,
+            "time": 0,
+            "value": 0
+          },
+          {
+            "number": 100,
+            "ticks": 0,
+            "time": 0,
+            "value": 1
+          }
+        ],
+        "101": [
+          {
+            "number": 101,
+            "ticks": 0,
+            "time": 0,
+            "value": 0
+          },
+          {
+            "number": 101,
+            "ticks": 0,
+            "time": 0,
+            "value": 1
+          }
+        ],
+        "121": [
+          {
+            "number": 121,
+            "ticks": 0,
+            "time": 0,
+            "value": 0
+          }
+        ]
+      },
+      "pitchBends": [],
+      "instrument": {
+        "family": "piano",
+        "number": 0,
+        "name": "acoustic grand piano"
+      },
+      "name": "é¢ç´",
+      "notes": [
+        {
+          "duration": 0.19958333333333333,
+          "durationTicks": 479,
+          "midi": 71,
+          "name": "B4",
+          "ticks": 0,
+          "time": 0,
+          "velocity": 0.6299212598425197
+        },
+        {
+          "duration": 0.19958333333333333,
+          "durationTicks": 479,
+          "midi": 71,
+          "name": "B4",
+          "ticks": 480,
+          "time": 0.2,
+          "velocity": 0.6299212598425197
+        },
+        {
+          "duration": 0.19958333333333333,
+          "durationTicks": 479,
+          "midi": 71,
+          "name": "B4",
+          "ticks": 960,
+          "time": 0.4,
+          "velocity": 0.6299212598425197
+        },
+        {
+          "duration": 0.19958333333333333,
+          "durationTicks": 479,
+          "midi": 71,
+          "name": "B4",
+          "ticks": 1440,
+          "time": 0.6000000000000001,
+          "velocity": 0.6299212598425197
+        }
+      ],
+      "endOfTrackTicks": 1920
+    },
+    {
+      "channel": 0,
+      "controlChanges": {},
+      "pitchBends": [],
+      "instrument": {
+        "family": "piano",
+        "number": 0,
+        "name": "acoustic grand piano"
+      },
+      "name": "é¢ç´",
+      "notes": [
+        {
+          "duration": 0.19958333333333333,
+          "durationTicks": 479,
+          "midi": 50,
+          "name": "D3",
+          "ticks": 0,
+          "time": 0,
+          "velocity": 0.6299212598425197
+        },
+        {
+          "duration": 0.19958333333333333,
+          "durationTicks": 479,
+          "midi": 50,
+          "name": "D3",
+          "ticks": 480,
+          "time": 0.2,
+          "velocity": 0.6299212598425197
+        },
+        {
+          "duration": 0.19958333333333333,
+          "durationTicks": 479,
+          "midi": 50,
+          "name": "D3",
+          "ticks": 960,
+          "time": 0.4,
+          "velocity": 0.6299212598425197
+        },
+        {
+          "duration": 0.19958333333333333,
+          "durationTicks": 479,
+          "midi": 50,
+          "name": "D3",
+          "ticks": 1440,
+          "time": 0.6000000000000001,
+          "velocity": 0.6299212598425197
+        }
+      ],
+      "endOfTrackTicks": 1920
+    }
+  ]
+}

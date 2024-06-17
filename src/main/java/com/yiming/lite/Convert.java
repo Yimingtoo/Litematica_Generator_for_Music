@@ -1,0 +1,300 @@
+package com.yiming.lite;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
+
+public class Convert {
+    static class Pos {
+        double x;
+        double y;
+        double z;
+
+        Pos(double x, double y, double z) {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
+
+    }
+
+    static class SizeAndPos {
+        SizeAndPos(int x, int y, int z) {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
+
+        int x;
+        int y;
+        int z;
+
+    }
+
+    String Name = "";
+
+    // 外部是 Entities[*]
+    public NbtCompound makeChestMinecart(Pos pos, NbtList nbtList_items) {
+        NbtCompound nbt_entities = new NbtCompound();
+
+        NbtList nbtList_motion = new NbtList(NbtElement.TAG_DOUBLE);
+        nbtList_motion.add(0.0);
+        nbtList_motion.add(0.0);
+        nbtList_motion.add(0.0);
+        nbt_entities.put("Motion", nbtList_motion);
+
+        nbt_entities.putFloat("FallDistance", (float) 0.0);
+
+        NbtList nbtList_pos = new NbtList(NbtElement.TAG_DOUBLE);
+        nbtList_pos.add(pos.x);
+        nbtList_pos.add(pos.y);
+        nbtList_pos.add(pos.z);
+        nbt_entities.put("Pos", nbtList_pos);
+
+        nbt_entities.putShort("Fire", (short) -1);
+        nbt_entities.putByte("Invulnerable", (byte) 0);
+
+//        NbtList nbtList_items = new NbtList(NbtElement.TAG_COMPOUND);
+//        for (NbtCompound i : items_shulkerBoxes) {
+//            nbtList_items.add(i);
+//        }
+        nbt_entities.put("Items", nbtList_items);
+
+        nbt_entities.putString("id", "minecraft:chest_minecart");
+
+        nbt_entities.putShort("Air", (short) 300);
+
+        nbt_entities.putByte("OnGround", (byte) 1);
+
+        nbt_entities.putInt("PortalCooldown", 0);
+
+        int[] uuid = new int[4];
+        Random random = new Random();
+        for (int i = 0; i < 4; i++) {
+            uuid[i] = random.nextInt();
+        }
+        nbt_entities.putIntArray("UUID", uuid);
+
+        NbtList nbtList_rotation = new NbtList(NbtElement.TAG_FLOAT);
+        nbtList_rotation.add((float) 0);
+        nbtList_rotation.add((float) 0);
+        nbt_entities.put("Rotation", nbtList_rotation);
+
+        return nbt_entities;
+    }
+
+    // 外部是 Regions:{*}
+    public NbtCompound makeRegions(String areaName, SizeAndPos pos, SizeAndPos size, ArrayList<NbtCompound> entities_chestMinecart) {
+        NbtCompound nbt_area = new NbtCompound();
+        double tmp = Math.abs(size.x * size.y * size.z);
+        long[] blockStates = new long[(int) (Math.ceil(tmp / 32.0))];
+        nbt_area.putLongArray("BlockStates", blockStates);
+
+        NbtList nullList = new NbtList(NbtElement.TAG_NULL);
+        nbt_area.put("PendingBlockTicks", nullList);
+
+        NbtCompound nbtList_pos = new NbtCompound();
+        nbtList_pos.putInt("x", pos.x);
+        nbtList_pos.putInt("y", pos.y);
+        nbtList_pos.putInt("z", pos.z);
+        nbt_area.put("Position", nbtList_pos);
+
+        NbtList nbtList_blockStatePalette = new NbtList(NbtElement.TAG_COMPOUND);
+        NbtCompound nbt_name = new NbtCompound();
+        nbt_name.putString("Name", "minecraft:air");
+        nbtList_blockStatePalette.add(nbt_name);
+        nbt_area.put("BlockStatePalette", nbtList_blockStatePalette);
+
+        NbtCompound nbtList_size = new NbtCompound();
+        nbtList_size.putInt("x", size.x);
+        nbtList_size.putInt("y", size.y);
+        nbtList_size.putInt("z", size.z);
+        nbt_area.put("Size", nbtList_size);
+
+        nbt_area.put("PendingFluidTicks", nullList);
+
+        nbt_area.put("TileEntities", nullList);
+
+        NbtList nbtList_entities = new NbtList(NbtElement.TAG_COMPOUND);
+
+        for (int i = 0; i < entities_chestMinecart.size(); i++) {
+            nbtList_entities.add(entities_chestMinecart.get(i));
+        }
+        nbt_area.put("Entities", nbtList_entities);
+
+        NbtCompound nbt_regions = new NbtCompound();
+        nbt_regions.put(areaName, nbt_area);
+        return nbt_regions;
+    }
+
+    public NbtCompound makeFullLitematicContext(int minecraftDataVersion, int version, SizeAndPos encloseSize, String areaName, NbtCompound regions) {
+        NbtCompound nbt_lite = new NbtCompound();
+        nbt_lite.putInt("MinecraftDataVersion", minecraftDataVersion);
+
+        nbt_lite.putInt("Version", version);
+
+        NbtCompound nbt_mateData = new NbtCompound();
+        nbt_mateData.putLong("TimeCreated", System.currentTimeMillis());
+        nbt_mateData.putLong("TimeModified", System.currentTimeMillis());
+
+        NbtCompound nbt_encloseSize = new NbtCompound();
+        nbt_encloseSize.putInt("x", encloseSize.x);
+        nbt_encloseSize.putInt("y", encloseSize.y);
+        nbt_encloseSize.putInt("z", encloseSize.z);
+        nbt_mateData.put("EnclosingSize", nbt_encloseSize);
+
+//        nbt_mateData.putString("Description", "File is automatically generated by Redstone Music Generator.");
+        nbt_mateData.putString("Description", "");
+        nbt_mateData.putInt("RegionCount", 1);
+        nbt_mateData.putInt("TotalBlocks", 0);
+        nbt_mateData.putString("Author", "Anonym_NM");
+        nbt_mateData.putInt("TotalVolume", encloseSize.x * encloseSize.y * encloseSize.z);
+        nbt_mateData.putString("Name", areaName);
+
+        nbt_lite.put("Metadata", nbt_mateData);
+        nbt_lite.put("Regions", regions);
+        nbt_lite.putInt("SubVersion", 1);
+
+        NbtCompound nbt_all = new NbtCompound();
+        nbt_all.put("", nbt_lite);
+
+        return nbt_all;
+
+    }
+
+    public ArrayList<NbtCompound> packContainer(Pos initPos, ArrayList<NbtCompound> nbtCompoundArrayList) {
+        Pos pos = initPos;
+        double initY = pos.y;
+        int shulkerCount = 0;
+        int chestCount = 0;
+        NbtList shulkerNbtList = new NbtList(NbtElement.TAG_COMPOUND);
+        ArrayList<NbtCompound> outputArrayList = new ArrayList<NbtCompound>();
+        for (int i = 0; i < nbtCompoundArrayList.size(); i++) {
+            NbtCompound nbtCompound = nbtCompoundArrayList.get(i).copy();
+            nbtCompound.putByte("Slot", (byte) shulkerCount);
+            shulkerNbtList.add(nbtCompound.copy());
+
+
+            if ((i + 1) % 27 == 0) {
+                outputArrayList.add(makeChestMinecart(pos, shulkerNbtList.copy()).copy());
+                pos.y = pos.y + 0.7;
+//                System.out.println(pos.y+"\t"+initY);
+                if (pos.y - initY > 18) {
+                    Dialog.errorDialog("音符数量太多，无法生成!!!");
+                }
+
+                chestCount++;
+                shulkerNbtList.clear();
+                shulkerCount = 0;
+            } else {
+                shulkerCount++;
+            }
+        }
+        // 剩余不到27的部分
+        if (shulkerCount != 0) {
+            outputArrayList.add(makeChestMinecart(pos, shulkerNbtList.copy()).copy());
+            pos.y = pos.y + 0.7;
+        }
+        return outputArrayList;
+
+    }
+
+    public NbtCompound generateFile(ComposeMusic composeMusic) {
+        int offside = 20;
+        this.Name = composeMusic.Name;
+        Pos posNote = new Pos(-0.5 + 1, 0.5, 1.5);
+        Pos posTone = new Pos(0.5 + 1, 0.5, 0.5);
+        ArrayList<NbtCompound> nbtList_entities = this.packContainer(posTone, composeMusic.getShulkerBoxes('L', 0, 0));
+        nbtList_entities.addAll(this.packContainer(posNote, composeMusic.getShulkerBoxes('L', 0, 1)));
+        posNote = new Pos(-0.5 + 1, 28.5, 1.5);
+        posTone = new Pos(0.5 + 1, 28.5, 0.5);
+        nbtList_entities.addAll(this.packContainer(posTone, composeMusic.getShulkerBoxes('L', 1, 0)));
+        nbtList_entities.addAll(this.packContainer(posNote, composeMusic.getShulkerBoxes('L', 1, 1)));
+        posNote = new Pos(-0.5 + 1, 56.5, 1.5);
+        posTone = new Pos(0.5 + 1, 56.5, 0.5);
+        nbtList_entities.addAll(this.packContainer(posTone, composeMusic.getShulkerBoxes('L', 2, 0)));
+        nbtList_entities.addAll(this.packContainer(posNote, composeMusic.getShulkerBoxes('L', 2, 1)));
+        posNote = new Pos(-0.5 + 1, 84.5, 1.5);
+        posTone = new Pos(0.5 + 1, 84.5, 0.5);
+        nbtList_entities.addAll(this.packContainer(posTone, composeMusic.getShulkerBoxes('L', 3, 0)));
+        nbtList_entities.addAll(this.packContainer(posNote, composeMusic.getShulkerBoxes('L', 3, 1)));
+        posNote = new Pos(-0.5 + 1, 0.5 - 45, 1.5);
+        posTone = new Pos(0.5 + 1, 0.5 - 45, 0.5);
+        nbtList_entities.addAll(this.packContainer(posTone, composeMusic.getShulkerBoxes('R', 0, 0)));
+        nbtList_entities.addAll(this.packContainer(posNote, composeMusic.getShulkerBoxes('R', 0, 1)));
+        posNote = new Pos(-0.5 + 1, 0.5 - 45 - 28, 1.5);
+        posTone = new Pos(0.5 + 1, 0.5 - 45 - 28, 0.5);
+        nbtList_entities.addAll(this.packContainer(posTone, composeMusic.getShulkerBoxes('R', 1, 0)));
+        nbtList_entities.addAll(this.packContainer(posNote, composeMusic.getShulkerBoxes('R', 1, 1)));
+//        posNote = new Pos(-0.5 + offside, 56.5, 1.5);
+//        posTone = new Pos(0.5 + offside - 2, 56.5, 0.5);
+//        nbtList_entities.addAll(this.packContainer(posNote, composeMusic.getShulkerBoxes('R', 2, 0)));
+//        nbtList_entities.addAll(this.packContainer(posTone, composeMusic.getShulkerBoxes('R', 2, 1)));
+//        posNote = new Pos(-0.5 + offside, 84.5, 1.5);
+//        posTone = new Pos(0.5 + offside - 2, 84.5, 0.5);
+//        nbtList_entities.addAll(this.packContainer(posNote, composeMusic.getShulkerBoxes('R', 3, 0)));
+//        nbtList_entities.addAll(this.packContainer(posTone, composeMusic.getShulkerBoxes('R', 3, 1)));
+        NbtCompound nbtRegions = this.makeRegions("RestoneMusic", new SizeAndPos(0, 0, 0), new SizeAndPos(40, 56, 2), nbtList_entities);
+        NbtCompound fullContext = this.makeFullLitematicContext(3337, 6, new SizeAndPos(40, 56, 2), composeMusic.Name, nbtRegions);
+        return fullContext;
+    }
+
+
+    public void writeFile(ArrayList<ArrayList<Integer>> LeftNotes, ArrayList<ArrayList<Integer>> RightNotes, String fileName) throws IOException {
+        ComposeMusic composeMusic = new ComposeMusic(LeftNotes, RightNotes, fileName);
+        String inputFileName = fileName + ".temp";
+        File target = new File(inputFileName);
+        byte[] bytes = generateFile(composeMusic).getEntry(0);
+
+        if (target.exists() && target.isFile()) {
+            boolean flag = target.delete();
+        }
+
+        if (target.createNewFile()) {
+
+            FileOutputStream fileOutputStream = new FileOutputStream(target.getAbsoluteFile());
+            fileOutputStream.write(bytes);
+            fileOutputStream.close();
+        }
+
+        String outputFileName = fileName;
+        Gzip.GZipUtil(inputFileName, outputFileName);
+
+        if (target.exists() && target.isFile()) {
+            boolean flag = target.delete();
+        }
+    }
+
+    @Deprecated
+    public void writeFile(String fileName) throws IOException {
+        File file = new File(fileName);
+        String absoluteFolderPath = file.getAbsolutePath().substring(0, file.getAbsolutePath().length() - file.getName().length());
+
+        String inputFileName = absoluteFolderPath + this.Name + ".temp";
+        File target = new File(inputFileName);
+        ComposeMusic composeMusic = new ComposeMusic(fileName);
+        byte[] bytes = generateFile(composeMusic).getEntry(0);
+
+        if (target.exists() && target.isFile()) {
+            boolean flag = target.delete();
+        }
+//        System.out.println("convert"+generateFile(fileName).getNbtBytes().length);
+        if (target.createNewFile()) {
+
+            FileOutputStream fileOutputStream = new FileOutputStream(target.getAbsoluteFile());
+            fileOutputStream.write(bytes);
+            fileOutputStream.close();
+        }
+
+        String outputFileName = absoluteFolderPath + this.Name + ".litematic";
+        Gzip.GZipUtil(inputFileName, outputFileName);
+
+        if (target.exists() && target.isFile()) {
+            boolean flag = target.delete();
+        }
+
+    }
+
+}
