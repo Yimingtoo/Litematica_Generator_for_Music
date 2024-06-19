@@ -130,14 +130,14 @@ public class CtrlMidi {
         for (int i = 0; i < mainTrackSeq.size(); i++) {
             ArrayList<MidiNote> tempMidiNotes = midiInfo.getTrackArrayList().get(mainTrackSeq.get(i)).getNoteArrayList();
             for (int j = 0; j < tempMidiNotes.size(); j++) {
-                int pos = (int) Math.round(midiInfo.getSecondTime(tempMidiNotes.get(j).getTick()) / 0.05 / speed);
+                int pos = (int) Math.ceil(midiInfo.getSecondTime(tempMidiNotes.get(j).getTick()) / 0.05 / speed);
                 leftNotes.get(pos).add(tempMidiNotes.get(j).getKey());
             }
         }
         for (int i = 0; i < viceTrackSeq.size(); i++) {
             ArrayList<MidiNote> tempMidiNotes = midiInfo.getTrackArrayList().get(viceTrackSeq.get(i)).getNoteArrayList();
             for (int j = 0; j < tempMidiNotes.size(); j++) {
-                int pos = (int) Math.round(midiInfo.getSecondTime(tempMidiNotes.get(j).getTick()) / 0.05 / speed);
+                int pos = (int) Math.ceil(midiInfo.getSecondTime(tempMidiNotes.get(j).getTick()) / 0.05 / speed);
                 rightNotes.get(pos).add(tempMidiNotes.get(j).getKey());
             }
         }
